@@ -27,14 +27,14 @@ COPY vassals /etc/uwsgi/
 
 RUN pip install newrelic==${NEWRELIC_VERSION}
 
-RUN pip install -r ./app/requirements.txt
+RUN pip install -r requirements.txt
 
 RUN apt-get update && apt-get install -y supervisor \
   && rm -rf /var/lib/apt/lists/*
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-COPY ./app /home/site/repository
+COPY app /home/site/repository/
 WORKDIR /home/site/repository
 
 EXPOSE 80 443 8080
