@@ -19,6 +19,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/
 
 RUN pip install uwsgi==${UWSGI_VERSION}
+RUN mkdir /var/log/uwsgi
 RUN ln -sf /dev/stdout /var/log/uwsgi/uwsgi.log
 COPY uwsgi-emporer.ini /etc/uwsgi/emporer.ini
 COPY uwsgi-vassal.ini /etc/uwsgi/vassal.ini
