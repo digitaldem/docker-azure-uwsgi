@@ -27,7 +27,7 @@ COPY vassals /etc/uwsgi/
 
 RUN pip install newrelic==${NEWRELIC_VERSION}
 
-RUN pip install -r requirements.txt
+RUN pip install -r ./requirements.txt
 
 RUN apt-get update && apt-get install -y supervisor \
   && rm -rf /var/lib/apt/lists/*
