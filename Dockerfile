@@ -25,9 +25,11 @@ COPY uwsgi-emperor.ini /etc/uwsgi/emperor.ini
 COPY uwsgi-vassal.ini /etc/uwsgi/vassal.ini
 COPY vassals /etc/uwsgi/
 
-RUN pip install newrelic==${NEWRELIC_VERSION}
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
+RUN rm /tmp/requirements.txt
 
-RUN pip install -r ./requirements.txt
+RUN pip install newrelic==${NEWRELIC_VERSION}
 
 RUN apt-get update && apt-get install -y supervisor \
   && rm -rf /var/lib/apt/lists/*
